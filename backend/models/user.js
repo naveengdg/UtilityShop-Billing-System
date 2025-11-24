@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//create a collection in the database
 const userSchema = new mongoose.Schema({
     name : {type:String , required : true},
     email : {type : String , required : true , unique:true},
@@ -7,5 +8,5 @@ const userSchema = new mongoose.Schema({
 },{timestamps:true});
 
 
-
+//export the table that should be available for everyone
 export default mongoose.model("User",userSchema);
