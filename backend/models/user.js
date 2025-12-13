@@ -7,6 +7,5 @@ const userSchema = new mongoose.Schema({
     password :{type : String , required : true},
 },{timestamps:true});
 
-
 //export the table that should be available for everyone
 export default mongoose.model("User",userSchema);

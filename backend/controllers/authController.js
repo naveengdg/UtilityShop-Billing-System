@@ -2,6 +2,8 @@ import {validationResult} from "express-validator";//validation
 import User from "../models/user.js";//database
 import bcrypt from "bcryptjs";//hasing (password)
 import jwt from "jsonwebtoken";
+
+
 //register logic
 
 export const registerUser = async (req , res) => {
@@ -106,6 +108,6 @@ export const loginUser = async (req , res) => {
     //if any error
     catch(err){
         console.error(err);
-        res.status(400).json({message:"Server erro"});
+        res.status(400).json({message:"Server error"});
     }
 }
