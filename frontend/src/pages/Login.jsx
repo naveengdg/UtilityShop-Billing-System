@@ -6,7 +6,7 @@ function Login(){
     const [password , setPassword] = useState("");
     const [error , setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
     
 
@@ -21,7 +21,31 @@ function Login(){
     }
 
     setError("");
-    console.log("Login data: ",{email , password});
+    
+    try{
+        const response = await fetch("http://localhost:5000/api/auth/login",{
+            method:"POST",
+            headers : {
+                "content-type":"application/json",
+            },
+            body:JSON.stringify({
+                email,
+                password,
+            }),
+        });
+        
+        const data = await response.json();
+
+        if(!response.ok){
+            setError(data.message || "Login failed");
+            return;
+        }
+        localStorage.setItem("token",data.token);
+        console.log("Login success:",data);
+    }
+    catch(error){
+        setError("Server error. Please try again later");
+    }
 };
  
     return(
