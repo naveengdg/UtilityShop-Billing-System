@@ -22,7 +22,8 @@ function Login(){
 
     setError("");
     
-    try{
+    try{ 
+        //sending the user credentials to the backend to check the user already logged in or not
         const response = await fetch("http://localhost:5000/api/auth/login",{
             method:"POST",
             headers : {
@@ -41,7 +42,7 @@ function Login(){
             return;
         }
         localStorage.setItem("token",data.token);
-        console.log("Login success:",data);
+        alert("login successfull");
     }
     catch(error){
         setError("Server error. Please try again later");
@@ -81,7 +82,6 @@ function Login(){
                 <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded">
                     Login
                 </button>
-
             </form>
         </div>
     );
